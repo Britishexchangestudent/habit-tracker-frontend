@@ -20,6 +20,18 @@ export async function createHabit(name: string): Promise<Habit> {
   return response.json();
 }
 
+export async function updateHabit(id: number, name: string): Promise<Habit> {
+    const response = await fetch(`${API_BASE_URL}/habits/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ name }),
+    });
+  
+    return response.json();
+  }
+
 export async function deleteHabit(id: number): Promise<void> {
   await fetch(`${API_BASE_URL}/habits/${id}`, {
     method: "DELETE",
